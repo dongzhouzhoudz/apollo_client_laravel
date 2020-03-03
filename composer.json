@@ -1,8 +1,11 @@
 {
-  "name": "org/zzcommontool",
+  "name": "dongzhouzhoua/zzcommontool",
   "description": "This Package Is For ZZ Usually Use Tool",
   "require": {
-    "php": ">=7"
+    "php": ">=7",
+    "multilinguals/apollo-client": "^0.1.2",
+    "tightenco/collect": "dev-master",
+    "phpstan/phpstan": "^0.12.0@dev"
   },
   "license": "MIT",
   "authors": [

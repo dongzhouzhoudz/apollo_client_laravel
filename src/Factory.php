@@ -6,6 +6,8 @@
  * Time: 12:07 PM
  */
 
+namespace CommonTool;
+
 use CommonTool\Apollo\ApolloClientOperation;
 
 class Factory {

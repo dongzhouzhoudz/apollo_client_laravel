@@ -4,7 +4,7 @@
   "require": {
     "php": ">=7",
     "multilinguals/apollo-client": "^0.1.2",
-    "tightenco/collect": "dev-master",
+    "tightenco/collect": "^v6.0.2",
     "phpstan/phpstan": "^0.12.0@dev"
   },
   "license": "MIT",
@@ -14,6 +14,9 @@
       "email": "dongzhou_southeast@163.com"
     }
   ],
+  "conflict": {
+    "tightenco/collect": "<5.5.33"
+  },
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {

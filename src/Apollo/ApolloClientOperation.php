@@ -40,7 +40,8 @@ class ApolloClientOperation {
         $sourcePath = $this->sourcePath;
         $desFile = $this->desFile;
         do {
-            $this->apolloClient->start(function () use ($sourcePath, $desFile) {
+            $this->apolloClient->start(function () use ($sourcePath, $desFile)
+            {
                 self::saveConfigToLocal($sourcePath, $desFile);
             });
         } while (true);
@@ -64,10 +65,10 @@ class ApolloClientOperation {
                 $apollo = array_merge($apollo, $config['configurations']);
             }
         }
-        $contentArray->transform(function ($item) use (&$apollo, &$newAddContent) {
+        $contentArray->transform(function ($item) use (&$apollo, &$newAddContent)
+        {
             foreach ($apollo as $key => $value) {
                 if (strpos($item, $key) !== false) {
-                    $newAddContent[] = $key . '=' . $value; //新增配置
                     $checkConfig = self::checkStrBetweenEmpty($item, $key, "=");
                     if ($checkConfig) {
                         $configLine = $key . '=' . $value;
@@ -79,10 +80,6 @@ class ApolloClientOperation {
             return $item;
         });
 
-        print_r($contentArray);
-
-        print_r($apollo);
-
         if (!empty($apollo)) {
             foreach ($apollo as $key => $value) {
                 $newAddContent[] = $key . '=' . $value;
@@ -90,8 +87,8 @@ class ApolloClientOperation {
         }
 
 
-        $content = implode($contentArray->toArray(), "\n")."\n"; //修改配置部分
-        $content .= implode($newAddContent, "\n")."\n";          //新增配置部分
+        $content = implode($contentArray->toArray(), "\n") . "\n"; //修改配置部分
+        $content .= implode($newAddContent, "\n") . "\n";          //新增配置部分
 
         try {
             file_put_contents($desFile, $content);
@@ -110,10 +107,11 @@ class ApolloClientOperation {
      *
      */
     public static function checkStrBetweenEmpty($checkStr, $startStr, $endStr) {
-        $startPosition = (strpos($checkStr, $startStr)) + strlen($startStr) + 1;
+        $startPosition = (strpos($checkStr, $startStr)) + strlen($startStr);
         $endPosition = (strpos($checkStr, $endStr));
-        if ($endPosition > $startPosition) {
-            $middleString = substr($checkStr, $startPosition, $endPosition);
+        if ($endPosition >= $startPosition) {
+            $strLength = $endPosition - $startPosition;
+            $middleString = substr($checkStr, $startPosition, $strLength);
             if (empty($middleString)) {
                 return true;
             } else {
